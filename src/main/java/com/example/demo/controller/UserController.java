@@ -10,7 +10,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    private final UserService userService = new UserService();
+
+    private final UserService userService;
+
+    // Constructor injection without @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping
     public String addUser(@RequestBody User user) {
