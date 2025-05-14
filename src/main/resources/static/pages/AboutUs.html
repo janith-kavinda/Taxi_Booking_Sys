@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Taxi Booking System</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    <main style="padding: 50px; text-align: center; font-family: Arial, sans-serif;">
+        <h1 style="color: #333; font-size: 36px; margin-bottom: 20px;">About Us</h1>
+        <p style="color: #555; font-size: 18px; line-height: 1.6; max-width: 800px; margin: 0 auto;">
+            Welcome to TaxiGo, your trusted partner for safe and reliable taxi services. 
+            Our mission is to provide a seamless and comfortable travel experience for our customers. 
+            Whether you're commuting to work, heading to the airport, or exploring the city, 
+            TaxiGo is here to get you there on time and with ease.
+        </p>
+    </main>
+    <div id="footer-placeholder"></div>
+    <script>
+        async function loadComponents() {
+            document.getElementById('header-placeholder').innerHTML = await fetch('../components/header.html').then(res => res.text());
+            document.getElementById('footer-placeholder').innerHTML = await fetch('../components/footer.html').then(res => res.text());
+        }
+        loadComponents();
+    </script>
+</body>
+</html>

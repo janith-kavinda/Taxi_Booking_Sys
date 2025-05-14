@@ -4,7 +4,9 @@ public class User {
     private String id;
     private String name;
     private String email;
-    private String password; // Add password field
+    private String password;
+    private String phoneNumber; // Add phoneNumber field
+    private String address; // Add address field
 
     // Constructors
     public User() {}
@@ -14,13 +16,17 @@ public class User {
         this.name = name;
         this.email = email;
         this.password = null; // Default password to null
+        this.phoneNumber = null; // Default phoneNumber to null
+        this.address = null; // Default address to null
     }
 
-    public User(String id, String name, String email, String password) {
+    public User(String id, String name, String email, String password, String phoneNumber, String address) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
     }
 
     // Getters and Setters
@@ -48,11 +54,27 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() { // Add getter for password
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) { // Add setter for password
+    public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhoneNumber() { // Add getter for phoneNumber
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) { // Add setter for phoneNumber
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getAddress() { // Add getter for address
+        return address;
+    }
+
+    public void setAddress(String address) { // Add setter for address
+        this.address = address;
     }
 }

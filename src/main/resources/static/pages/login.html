@@ -3,49 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <title>Login - Taxi Booking System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        main {
+            min-height: calc(100vh - 150px);
+            padding: 50px 0;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+    </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
-    <main>
+    
+    <main style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
         <div class="container">
-            <h1>Login</h1>
-            <form id="loginForm">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-                <button type="submit">Login</button>
-            </form>
-            <p>Don't have an account? <a href="register.html">Register here</a>.</p>
+            <div style="background-color: #fff; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); padding: 30px; border-top: 5px solid #FFC107; max-width: 500px; margin: 0 auto;">
+                <h1 style="color: #222; text-align: center; margin-bottom: 30px; font-size: 28px; font-weight: 600;">Welcome Back</h1>
+                
+                <form id="loginForm" style="display: grid; gap: 20px;">
+                    <div style="display: flex; flex-direction: column;">
+                        <label for="email" style="font-weight: 500; margin-bottom: 8px; color: #444;">Email Address:</label>
+                        <input type="email" id="email" name="email" required style="padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px; transition: border-color 0.3s; outline: none;" placeholder="Enter your email">
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column;">
+                        <label for="password" style="font-weight: 500; margin-bottom: 8px; color: #444;">Password:</label>
+                        <input type="password" id="password" name="password" required style="padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px; transition: border-color 0.3s; outline: none;" placeholder="Enter your password">
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div style="display: flex; align-items: center;">
+                            <input type="checkbox" id="remember" name="remember" style="margin-right: 8px;">
+                            <label for="remember" style="color: #666; font-size: 14px;">Remember me</label>
+                        </div>
+                        <a href="#" style="color: #FFC107; text-decoration: none; font-size: 14px; font-weight: 500;">Forgot Password?</a>
+                    </div>
+                    
+                    <button type="submit" style="background-color: #FFC107; color: #222; padding: 14px; border: none; border-radius: 4px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background-color 0.3s; margin-top: 10px; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">Sign In</button>
+                </form>
+                
+                <div style="text-align: center; margin-top: 25px; padding-top: 20px; border-top: 1px solid #eee;">
+                    <p style="color: #666;">Don't have an account? <a href="register.html" style="color: #FFC107; text-decoration: none; font-weight: 500; transition: color 0.3s;">Register here</a>.</p>
+                </div>
+            </div>
         </div>
     </main>
+    
     <div id="footer-placeholder"></div>
+    
     <script>
         async function loadComponents() {
             document.getElementById('header-placeholder').innerHTML = await fetch('../components/header.html').then(res => res.text());
             document.getElementById('footer-placeholder').innerHTML = await fetch('../components/footer.html').then(res => res.text());
         }
         loadComponents();
-
+        
+        // Input focus effects
+        const inputs = document.querySelectorAll('input[type="email"], input[type="password"]');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.style.borderColor = '#FFC107';
+                input.style.boxShadow = '0 0 0 3px rgba(255, 193, 7, 0.2)';
+            });
+            input.addEventListener('blur', () => {
+                input.style.borderColor = '#ddd';
+                input.style.boxShadow = 'none';
+            });
+        });
+        
+        // Form submission handler
         const loginForm = document.getElementById('loginForm');
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+            
+            // Show loading state on button
+            const submitButton = loginForm.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerText;
+            submitButton.innerText = 'Signing In...';
+            submitButton.style.backgroundColor = '#e0a800';
+            submitButton.disabled = true;
+            
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-
-            const response = await fetch('/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password })
-            });
-
-            if (response.ok) {
-                alert('Login successful!');
-                window.location.href = 'home.html';
-            } else {
-                alert('Invalid email or password.');
+            
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                if (response.ok) {
+                    // Success notification
+                    const successMsg = document.createElement('div');
+                    successMsg.style.backgroundColor = '#d4edda';
+                    successMsg.style.color = '#155724';
+                    successMsg.style.padding = '15px';
+                    successMsg.style.borderRadius = '4px';
+                    successMsg.style.marginTop = '20px';
+                    successMsg.style.textAlign = 'center';
+                    successMsg.innerText = 'Login successful! Redirecting...';
+                    loginForm.insertAdjacentElement('afterend', successMsg);
+                    
+                    setTimeout(() => {
+                        window.location.href = 'home.html';
+                    }, 1500);
+                } else {
+                    throw new Error('Login failed');
+                }
+            } catch (error) {
+                // Error notification
+                const errorMsg = document.createElement('div');
+                errorMsg.style.backgroundColor = '#f8d7da';
+                errorMsg.style.color = '#721c24';
+                errorMsg.style.padding = '15px';
+                errorMsg.style.borderRadius = '4px';
+                errorMsg.style.marginTop = '20px';
+                errorMsg.style.textAlign = 'center';
+                errorMsg.innerText = 'Invalid email or password.';
+                loginForm.insertAdjacentElement('afterend', errorMsg);
+                
+                // Reset button
+                submitButton.innerText = originalText;
+                submitButton.style.backgroundColor = '#FFC107';
+                submitButton.disabled = false;
             }
         });
     </script>

@@ -2,10 +2,13 @@ package com.example.demo.service;
 
 import com.example.demo.model.User;
 
+import org.springframework.stereotype.Service;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service // Mark as a Spring service
 public class UserService {
     private static final String FILE_PATH = "C:/Temp/users.txt"; // Updated to a writable directory
 
@@ -27,7 +30,7 @@ public class UserService {
 
     public void addUser(User user) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
-            writer.write(user.getId() + "," + user.getName() + "," + user.getEmail() + "," + user.getPassword());
+            writer.write(user.getId() + "," + user.getName() + "," + user.getEmail() + "," + user.getPassword() + "," + user.getPhoneNumber() + "," + user.getAddress());
             writer.newLine();
         } catch (IOException e) {
             System.err.println("Error writing to users.txt file. Please check file permissions: " + e.getMessage());
@@ -41,8 +44,8 @@ public class UserService {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length == 4) { // Ensure all fields are present
-                    users.add(new User(parts[0], parts[1], parts[2], parts[3]));
+                if (parts.length == 6) { // Ensure all fields are present
+                    users.add(new User(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]));
                 }
             }
         }
@@ -57,5 +60,31 @@ public class UserService {
     public boolean validateUser(String email, String password) throws IOException {
         List<User> users = getAllUsers();
         return users.stream().anyMatch(user -> user.getEmail().equals(email) && user.getPassword().equals(password));
+    }
+
+    public void updateUser(User updatedUser) throws IOException {
+        List<User> users = getAllUsers();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
+            for (User user : users) {
+                if (user.getEmail().equals(updatedUser.getEmail())) {
+                    writer.write(updatedUser.getId() + "," + updatedUser.getName() + "," + updatedUser.getEmail() + "," + updatedUser.getPassword() + "," + updatedUser.getPhoneNumber() + "," + updatedUser.getAddress());
+                } else {
+                    writer.write(user.getId() + "," + user.getName() + "," + user.getEmail() + "," + user.getPassword() + "," + user.getPhoneNumber() + "," + user.getAddress());
+                }
+                writer.newLine();
+            }
+        }
+    }
+
+    public void deleteUser(String email) throws IOException {
+        List<User> users = getAllUsers();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
+            for (User user : users) {
+                if (!user.getEmail().equals(email)) {
+                    writer.write(user.getId() + "," + user.getName() + "," + user.getEmail() + "," + user.getPassword() + "," + user.getPhoneNumber() + "," + user.getAddress());
+                    writer.newLine();
+                }
+            }
+        }
     }
 }
