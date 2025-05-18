@@ -1,0 +1,393 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head>     
+    <meta charset="UTF-8">     
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">     
+    <title>Book Your Ride - TaxiGo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/images/carousel.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            padding: 100px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 70px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-container h1 {
+            font-size: 42px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+    </style>
+</head> 
+<body>     
+    <div id="header-placeholder"></div>     
+    <main>
+        <div class="hero-section">
+            <div class="form-container">
+                <h1 style="color: #222; text-align: center; font-weight: bold; position: relative;">
+                    Book Your Premium Ride
+                    <span style="display: block; width: 80px; height: 4px; background-color: #FFC107; margin: 15px auto 0;"></span>
+                </h1>
+                
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <p style="font-size: 18px; color: #555; max-width: 800px; margin: 0 auto; line-height: 1.6;">
+                        Experience the comfort and reliability of TaxiGo. Our drivers are professional, our vehicles are premium, and your satisfaction is guaranteed.
+                    </p>
+                </div>
+                
+                <form id="bookingForm">
+                    <div style="display: flex; flex-wrap: wrap; gap: 25px; margin-bottom: 30px;">
+                        <div style="flex: 1; min-width: 280px;">
+                            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                <span style="background-color: #FFC107; color: #222; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 10px; font-weight: bold;">1</span>
+                                <label for="userId" style="color: #333; font-weight: 600; font-size: 18px;">User Information</label>
+                            </div>
+                            
+                            <div style="display: flex; flex-direction: column; gap: 20px; background-color: rgba(255, 193, 7, 0.05); padding: 20px; border-radius: 10px; border-left: 4px solid #FFC107;">
+                                <div>
+                                    <label for="userId" style="color: #555; font-weight: 600; margin-bottom: 8px; font-size: 16px; display: block;">User ID</label>
+                                    <input type="text" id="userId" name="userId" required 
+                                           style="width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; transition: all 0.3s; background-color: white; box-sizing: border-box;"
+                                           onfocus="this.style.borderColor='#FFC107'; this.style.boxShadow='0 0 0 3px rgba(255, 193, 7, 0.2)'"
+                                           onblur="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none'">
+                                    <small style="display: block; margin-top: 5px; color: #777; font-size: 12px;">Enter your unique TaxiGo user ID</small>
+                                </div>
+                                
+                                <div>
+                                    <label for="name" style="color: #555; font-weight: 600; margin-bottom: 8px; font-size: 16px; display: block;">Full Name</label>
+                                    <input type="text" id="name" name="name" required 
+                                           style="width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; transition: all 0.3s; background-color: white; box-sizing: border-box;"
+                                           onfocus="this.style.borderColor='#FFC107'; this.style.boxShadow='0 0 0 3px rgba(255, 193, 7, 0.2)'"
+                                           onblur="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none'">
+                                </div>
+                                
+                                <div>
+                                    <label for="phone" style="color: #555; font-weight: 600; margin-bottom: 8px; font-size: 16px; display: block;">Phone Number</label>
+                                    <input type="tel" id="phone" name="phone" required 
+                                           style="width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; transition: all 0.3s; background-color: white; box-sizing: border-box;"
+                                           onfocus="this.style.borderColor='#FFC107'; this.style.boxShadow='0 0 0 3px rgba(255, 193, 7, 0.2)'"
+                                           onblur="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none'"
+                                           placeholder="e.g., +1 (234) 567-8910">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="flex: 1; min-width: 280px;">
+                            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                <span style="background-color: #FFC107; color: #222; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 10px; font-weight: bold;">2</span>
+                                <label style="color: #333; font-weight: 600; font-size: 18px;">Journey Details</label>
+                            </div>
+                            
+                            <div style="display: flex; flex-direction: column; gap: 20px; background-color: rgba(255, 193, 7, 0.05); padding: 20px; border-radius: 10px; border-left: 4px solid #FFC107;">
+                                <div>
+                                    <label for="pickupLocation" style="color: #555; font-weight: 600; margin-bottom: 8px; font-size: 16px; display: block;">Pickup Location</label>
+                                    <div style="position: relative;">
+                                        <span style="position: absolute; left: 15px; top: 15px; color: #555;">📍</span>
+                                        <input type="text" id="pickupLocation" name="pickupLocation" required placeholder="Enter pickup address..."
+                                               style="width: 100%; padding: 15px 15px 15px 40px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; transition: all 0.3s; background-color: white; box-sizing: border-box;"
+                                               onfocus="this.style.borderColor='#FFC107'; this.style.boxShadow='0 0 0 3px rgba(255, 193, 7, 0.2)'"
+                                               onblur="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none'">
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label for="dropLocation" style="color: #555; font-weight: 600; margin-bottom: 8px; font-size: 16px; display: block;">Drop-off Location</label>
+                                    <div style="position: relative;">
+                                        <span style="position: absolute; left: 15px; top: 15px; color: #555;">🏁</span>
+                                        <input type="text" id="dropLocation" name="dropLocation" required placeholder="Enter destination address..."
+                                               style="width: 100%; padding: 15px 15px 15px 40px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; transition: all 0.3s; background-color: white; box-sizing: border-box;"
+                                               onfocus="this.style.borderColor='#FFC107'; this.style.boxShadow='0 0 0 3px rgba(255, 193, 7, 0.2)'"
+                                               onblur="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none'">
+                                    </div>
+                                </div>
+                                
+                                <div style="display: flex; gap: 15px;">
+                                    <div style="flex: 1;">
+                                        <label for="bookingDate" style="color: #555; font-weight: 600; margin-bottom: 8px; font-size: 16px; display: block;">Date</label>
+                                        <input type="date" id="bookingDate" name="bookingDate" required
+                                               style="width: 100%; padding: 14px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; transition: all 0.3s; background-color: white; box-sizing: border-box;"
+                                               onfocus="this.style.borderColor='#FFC107'; this.style.boxShadow='0 0 0 3px rgba(255, 193, 7, 0.2)'"
+                                               onblur="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none'">
+                                    </div>
+                                    
+                                    <div style="flex: 1;">
+                                        <label for="bookingTime" style="color: #555; font-weight: 600; margin-bottom: 8px; font-size: 16px; display: block;">Time</label>
+                                        <input type="time" id="bookingTime" name="bookingTime" required
+                                               style="width: 100%; padding: 14px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; transition: all 0.3s; background-color: white; box-sizing: border-box;"
+                                               onfocus="this.style.borderColor='#FFC107'; this.style.boxShadow='0 0 0 3px rgba(255, 193, 7, 0.2)'"
+                                               onblur="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none'">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 40px;">
+                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                            <span style="background-color: #FFC107; color: #222; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 10px; font-weight: bold;">3</span>
+                            <label for="vehicleType" style="color: #333; font-weight: 600; font-size: 18px;">Select Vehicle Type</label>
+                        </div>
+                        
+                        <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between;">
+                            <label for="Car" style="flex: 1; min-width: 200px; padding: 20px; border: 2px solid #e0e0e0; border-radius: 15px; cursor: pointer; transition: all 0.3s; text-align: center; background-color: white;">
+                                <input type="radio" id="Car" name="vehicleType" value="Car" style="display: none;" onchange="updateSelectedVehicle(this)">
+                                <img src="/images/car.png" alt="Car" style="width: 80px; height: 80px; object-fit: contain; margin-bottom: 15px;">
+                                <h3 style="margin: 0 0 5px; color: #222; font-size: 18px;">Standard Car</h3>
+                                <p style="margin: 0; color: #666; font-size: 14px;">Comfortable ride for up to 4 passengers</p>
+                                <div style="font-weight: bold; color: #FFC107; margin-top: 10px; font-size: 18px;">From $10</div>
+                            </label>
+                            
+                            <label for="Bike" style="flex: 1; min-width: 200px; padding: 20px; border: 2px solid #e0e0e0; border-radius: 15px; cursor: pointer; transition: all 0.3s; text-align: center; background-color: white;">
+                                <input type="radio" id="Bike" name="vehicleType" value="Bike" style="display: none;" onchange="updateSelectedVehicle(this)">
+                                <img src="/images/bike.png" alt="Bike" style="width: 80px; height: 80px; object-fit: contain; margin-bottom: 15px;">
+                                <h3 style="margin: 0 0 5px; color: #222; font-size: 18px;">Bike</h3>
+                                <p style="margin: 0; color: #666; font-size: 14px;">Quick service for single passengers</p>
+                                <div style="font-weight: bold; color: #FFC107; margin-top: 10px; font-size: 18px;">From $5</div>
+                            </label>
+                            
+                            <label for="Lorry" style="flex: 1; min-width: 200px; padding: 20px; border: 2px solid #e0e0e0; border-radius: 15px; cursor: pointer; transition: all 0.3s; text-align: center; background-color: white;">
+                                <input type="radio" id="Lorry" name="vehicleType" value="Lorry" style="display: none;" onchange="updateSelectedVehicle(this)">
+                                <img src="/images/lorry.png" alt="Lorry" style="width: 80px; height: 80px; object-fit: contain; margin-bottom: 15px;">
+                                <h3 style="margin: 0 0 5px; color: #222; font-size: 18px;">Lorry</h3>
+                                <p style="margin: 0; color: #666; font-size: 14px;">Perfect for moving large items</p>
+                                <div style="font-weight: bold; color: #FFC107; margin-top: 10px; font-size: 18px;">From $35</div>
+                            </label>
+                            
+                            <label for="Van" style="flex: 1; min-width: 200px; padding: 20px; border: 2px solid #e0e0e0; border-radius: 15px; cursor: pointer; transition: all 0.3s; text-align: center; background-color: white;">
+                                <input type="radio" id="Van" name="vehicleType" value="Van" style="display: none;" onchange="updateSelectedVehicle(this)">
+                                <img src="/images/van.png" alt="Van" style="width: 80px; height: 80px; object-fit: contain; margin-bottom: 15px;">
+                                <h3 style="margin: 0 0 5px; color: #222; font-size: 18px;">Van</h3>
+                                <p style="margin: 0; color: #666; font-size: 14px;">Spacious option for groups or luggage</p>
+                                <div style="font-weight: bold; color: #FFC107; margin-top: 10px; font-size: 18px;">From $20</div>
+                            </label>
+                        </div>
+                        <input type="hidden" id="vehicleType" name="vehicleType" required>
+                    </div>
+                    
+                    <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 30px;">
+                        <div style="flex: 1; min-width: 250px; background-color: rgba(255, 193, 7, 0.05); padding: 20px; border-radius: 10px; border-left: 4px solid #FFC107;">
+                            <h3 style="margin-top: 0; color: #222; font-size: 18px;">Additional Options</h3>
+                            
+                            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                <input type="checkbox" id="childSeat" name="childSeat" style="width: 18px; height: 18px; margin-right: 10px;">
+                                <label for="childSeat" style="color: #555; font-size: 15px;">Child seat (+$5)</label>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                <input type="checkbox" id="expressService" name="expressService" style="width: 18px; height: 18px; margin-right: 10px;">
+                                <label for="expressService" style="color: #555; font-size: 15px;">Express service (+$8)</label>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center;">
+                                <input type="checkbox" id="petFriendly" name="petFriendly" style="width: 18px; height: 18px; margin-right: 10px;">
+                                <label for="petFriendly" style="color: #555; font-size: 15px;">Pet-friendly vehicle (+$3)</label>
+                            </div>
+                        </div>
+                        
+                        <div style="flex: 1; min-width: 250px; background-color: rgba(255, 193, 7, 0.05); padding: 20px; border-radius: 10px; border-left: 4px solid #FFC107;">
+                            <h3 style="margin-top: 0; color: #222; font-size: 18px;">Special Requirements</h3>
+                            <textarea id="specialRequirements" name="specialRequirements" rows="4" placeholder="Any special instructions for your driver..."
+                                     style="width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 15px; transition: all 0.3s; background-color: white; box-sizing: border-box; resize: vertical;"
+                                     onfocus="this.style.borderColor='#FFC107'; this.style.boxShadow='0 0 0 3px rgba(255, 193, 7, 0.2)'"
+                                     onblur="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none'"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div style="background-color: #fff9e6; padding: 20px; border-radius: 10px; margin-bottom: 30px; border: 1px dashed #FFC107;">
+                        <div style="display: flex; align-items: center; margin-bottom: 10px; color: #222;">
+                            <span style="font-size: 24px; margin-right: 10px;">💰</span>
+                            <h3 style="margin: 0; font-size: 18px;">Estimated Fare</h3>
+                        </div>
+                        <div style="font-size: 32px; font-weight: bold; color: #222; margin-bottom: 5px;">$<span id="estimatedFare">10</span>.00</div>
+                        <p style="margin: 0; color: #666; font-size: 14px;">Final price may vary based on actual distance and traffic</p>
+                    </div>
+                    
+                    <button type="submit" 
+                            style="width: 100%; padding: 25px; background-color: #FFC107; color: #222; border: none; border-radius: 15px; font-size: 22px; font-weight: bold; cursor: pointer; transition: all 0.3s; margin-top: 10px; box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3); position: relative;"
+                            onmouseover="this.style.background='linear-gradient(135deg, #FFC107, #ffb300)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(255, 193, 7, 0.4)'"
+                            onmouseout="this.style.background='#FFC107'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(255, 193, 7, 0.3)'">
+                        <span style="display: inline-flex; align-items: center; justify-content: center;">
+                            <span style="margin-right: 10px;">Book Your Ride Now</span>
+                            <span style="font-size: 24px;">→</span>
+                        </span>
+                    </button>
+                </form>
+                        
+                <p id="responseMessage" style="text-align: center; margin-top: 20px; padding: 15px; border-radius: 10px; font-weight: 600; display: none;"></p>
+            </div>
+        </div>
+        
+        <!-- Additional Info Section -->
+        <div style="background-color: white; padding: 80px 0;">
+            <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: center;">
+                <h2 style="color: #222; font-size: 32px; margin-bottom: 15px;">Why Choose TaxiGo?</h2>
+                <p style="color: #666; font-size: 16px; max-width: 700px; margin: 0 auto 50px; line-height: 1.6;">We're committed to providing the best transportation experience with professional drivers, premium vehicles, and exceptional service.</p>
+                
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
+                    <div style="flex: 1; min-width: 250px; max-width: 280px; padding: 30px; background-color: #fff; border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); transition: all 0.3s;"
+                         onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 30px rgba(0, 0, 0, 0.1)'"
+                         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.05)'">
+                        <div style="background-color: #FFC107; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: #222; font-size: 32px;">⚡</div>
+                        <h3 style="color: #222; font-size: 20px; margin-bottom: 15px;">Instant Booking</h3>
+                        <p style="color: #666; font-size: 15px; line-height: 1.6;">Book your ride in seconds with our user-friendly platform. We'll confirm your booking instantly.</p>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 250px; max-width: 280px; padding: 30px; background-color: #fff; border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); transition: all 0.3s;"
+                         onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 30px rgba(0, 0, 0, 0.1)'"
+                         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.05)'">
+                        <div style="background-color: #FFC107; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: #222; font-size: 32px;">🔒</div>
+                        <h3 style="color: #222; font-size: 20px; margin-bottom: 15px;">Safe & Secure</h3>
+                        <p style="color: #666; font-size: 15px; line-height: 1.6;">Your safety is our priority. All drivers are vetted, and your data is encrypted and protected.</p>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 250px; max-width: 280px; padding: 30px; background-color: #fff; border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); transition: all 0.3s;"
+                         onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 30px rgba(0, 0, 0, 0.1)'"
+                         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.05)'">
+                        <div style="background-color: #FFC107; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: #222; font-size: 32px;">🚗</div>
+                        <h3 style="color: #222; font-size: 20px; margin-bottom: 15px;">Professional Drivers</h3>
+                        <p style="color: #666; font-size: 15px; line-height: 1.6;">Our drivers are experienced professionals who prioritize your comfort and safety.</p>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 250px; max-width: 280px; padding: 30px; background-color: #fff; border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); transition: all 0.3s;"
+                         onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 30px rgba(0, 0, 0, 0.1)'"
+                         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.05)'">
+                        <div style="background-color: #FFC107; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: #222; font-size: 32px;">⭐</div>
+                        <h3 style="color: #222; font-size: 20px; margin-bottom: 15px;">24/7 Customer Support</h3>
+                        <p style="color: #666; font-size: 15px; line-height: 1.6;">Our support team is available around the clock to assist you with any questions or concerns.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Customer Reviews Section -->
+        <div style="background-color: #f9f9f9; padding: 80px 0;">
+            <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: center;">
+                <h2 style="color: #222; font-size: 32px; margin-bottom: 15px;">What Our Customers Say</h2>
+                <p style="color: #666; font-size: 16px; max-width: 700px; margin: 0 auto 50px; line-height: 1.6;">Don't just take our word for it. Here's what our customers have to say about TaxiGo.</p>
+                
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
+                    <div style="flex: 1; min-width: 300px; max-width: 350px; padding: 30px; background-color: #fff; border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); text-align: left;">
+                        <div style="color: #FFC107; font-size: 24px; margin-bottom: 15px;">★★★★★</div>
+                        <p style="color: #555; font-size: 16px; line-height: 1.6; margin-bottom: 20px;">"TaxiGo has been my go-to ride service for the past year
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div id="footer-placeholder"></div>
+    <script>
+        document.getElementById('bookingForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            // Collect form data
+            const userId = document.getElementById('userId').value;
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const pickupLocation = document.getElementById('pickupLocation').value;
+            const dropLocation = document.getElementById('dropLocation').value;
+            const bookingDate = document.getElementById('bookingDate').value;
+            const bookingTime = document.getElementById('bookingTime').value;
+            const vehicleType = document.querySelector('input[name="vehicleType"]:checked')?.value; // Ensure a vehicle is selected
+            const childSeat = document.getElementById('childSeat').checked;
+            const expressService = document.getElementById('expressService').checked;
+            const petFriendly = document.getElementById('petFriendly').checked;
+            const specialRequirements = document.getElementById('specialRequirements').value;
+
+            // Validate required fields
+            if (!vehicleType) {
+                alert('Please select a vehicle type.');
+                return;
+            }
+
+            // Prepare data object
+            const bookingData = {
+                userId,
+                name,
+                phone,
+                pickupLocation,
+                dropLocation,
+                bookingDate,
+                bookingTime,
+                vehicleType,
+                childSeat,
+                expressService,
+                petFriendly,
+                specialRequirements
+            };
+
+            try {
+                // Send data to the backend
+                const response = await fetch('/api/bookings', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(bookingData)
+                });
+
+                const messageEl = document.getElementById('responseMessage');
+                messageEl.style.display = 'block';
+
+                if (response.ok) {
+                    const result = await response.json();
+                    // Redirect to booking-success.html with the booking ID
+                    window.location.href = `booking-success.html?bookingId=${result.bookingId}`;
+                } else {
+                    messageEl.textContent = 'Failed to create booking. Please try again.';
+                    messageEl.style.backgroundColor = '#ffebee';
+                    messageEl.style.color = '#c62828';
+                    messageEl.style.border = '1px solid #e57373';
+                }
+            } catch (error) {
+                const messageEl = document.getElementById('responseMessage');
+                messageEl.style.display = 'block';
+                messageEl.textContent = 'An error occurred. Please try again.';
+                messageEl.style.backgroundColor = '#ffebee';
+                messageEl.style.color = '#c62828';
+                messageEl.style.border = '1px solid #e57373';
+                console.error(error);
+            }
+        });
+
+        // Load header and footer dynamically
+        async function loadComponents() {
+            try {
+                const headerResponse = await fetch('../components/header.html');
+                if (!headerResponse.ok) throw new Error('Failed to load header');
+                document.getElementById('header-placeholder').innerHTML = await headerResponse.text();
+
+                const footerResponse = await fetch('../components/footer.html');
+                if (!footerResponse.ok) throw new Error('Failed to load footer');
+                document.getElementById('footer-placeholder').innerHTML = await footerResponse.text();
+            } catch (error) {
+                console.error('Error loading components:', error);
+            }
+        }
+        loadComponents();
+    </script>
+</body>
+</html>
+

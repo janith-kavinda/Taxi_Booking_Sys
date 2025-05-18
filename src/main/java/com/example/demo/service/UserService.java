@@ -5,6 +5,7 @@ import com.example.demo.model.User;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class UserService {
     private static final String FILE_PATH = "C:/Temp/users.txt"; // Updated to a writable directory
@@ -19,19 +20,38 @@ public class UserService {
             try {
                 file.createNewFile(); // Create the file if it doesn't exist
             } catch (IOException e) {
-                System.err.println("Error creating users.txt file. Please check file permissions: " + e.getMessage());
+                System.err.println("Error creating users.txt file: " + e.getMessage());
                 throw new RuntimeException(e);
             }
         }
     }
 
     public void addUser(User user) throws IOException {
+        // Generate a unique ID for new users
+        if (user.getId() == null || user.getId().trim().isEmpty()) {
+            user.setId(UUID.randomUUID().toString());
+        }
+        
+        // Set member since date for new users
+        if (user.getMemberSince() == null) {
+            user.setMemberSince(new java.util.Date().toString());
+        }
+
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
-            writer.write(user.getId() + "," + user.getName() + "," + user.getEmail() + "," + user.getPassword());
+            // Format: id,name,email,password,phoneNumber,address,country,location,memberSince
+            String userData = String.join(",",
+                user.getId(),
+                user.getName(),
+                user.getEmail(),
+                user.getPassword(),
+                user.getPhoneNumber() != null ? user.getPhoneNumber() : "",
+                user.getAddress() != null ? user.getAddress() : "",
+                user.getCountry() != null ? user.getCountry() : "",
+                user.getLocation() != null ? user.getLocation() : "",
+                user.getMemberSince()
+            );
+            writer.write(userData);
             writer.newLine();
-        } catch (IOException e) {
-            System.err.println("Error writing to users.txt file. Please check file permissions: " + e.getMessage());
-            throw e;
         }
     }
 
@@ -39,10 +59,23 @@ public class UserService {
         List<User> users = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
             String line;
-            while ((line = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null && !line.trim().isEmpty()) {
                 String[] parts = line.split(",");
-                if (parts.length == 4) { // Ensure all fields are present
-                    users.add(new User(parts[0], parts[1], parts[2], parts[3]));
+                if (parts.length >= 4) { // At least id, name, email, password
+                    User user = new User();
+                    user.setId(parts[0]);
+                    user.setName(parts[1]);
+                    user.setEmail(parts[2]);
+                    user.setPassword(parts[3]);
+                    
+                    // Set optional fields if they exist
+                    if (parts.length > 4) user.setPhoneNumber(parts[4]);
+                    if (parts.length > 5) user.setAddress(parts[5]);
+                    if (parts.length > 6) user.setCountry(parts[6]);
+                    if (parts.length > 7) user.setLocation(parts[7]);
+                    if (parts.length > 8) user.setMemberSince(parts[8]);
+                    
+                    users.add(user);
                 }
             }
         }
@@ -51,11 +84,24 @@ public class UserService {
 
     public boolean isEmailRegistered(String email) throws IOException {
         List<User> users = getAllUsers();
-        return users.stream().anyMatch(user -> user.getEmail().equals(email));
+        return users.stream()
+            .anyMatch(user -> user.getEmail().equalsIgnoreCase(email));
     }
 
-    public boolean validateUser(String email, String password) throws IOException {
+    public User validateUser(String email, String password) throws IOException {
         List<User> users = getAllUsers();
-        return users.stream().anyMatch(user -> user.getEmail().equals(email) && user.getPassword().equals(password));
+        return users.stream()
+            .filter(user -> user.getEmail().equalsIgnoreCase(email) && 
+                          user.getPassword().equals(password))
+            .findFirst()
+            .orElse(null);
+    }
+
+    public User getUserByEmail(String email) throws IOException {
+        List<User> users = getAllUsers();
+        return users.stream()
+            .filter(user -> user.getEmail().equalsIgnoreCase(email))
+            .findFirst()
+            .orElse(null);
     }
 }
