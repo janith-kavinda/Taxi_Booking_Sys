@@ -4,9 +4,13 @@ public class User {
     private String id;
     private String name;
     private String email;
-    private String password;
-    private String phoneNumber; // Add phoneNumber field
-    private String address; // Add address field
+    private String password; // Add password field
+    private String phoneNumber;
+    private String address;
+    private String country;
+    private String location;
+    private String memberSince;
+    private String lastLogin;
 
     // Constructors
     public User() {}
@@ -16,17 +20,13 @@ public class User {
         this.name = name;
         this.email = email;
         this.password = null; // Default password to null
-        this.phoneNumber = null; // Default phoneNumber to null
-        this.address = null; // Default address to null
     }
 
-    public User(String id, String name, String email, String password, String phoneNumber, String address) {
+    public User(String id, String name, String email, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.phoneNumber = phoneNumber;
-        this.address = address;
     }
 
     // Getters and Setters
@@ -54,27 +54,59 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
+    public String getPassword() { // Add getter for password
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(String password) { // Add setter for password
         this.password = password;
     }
 
-    public String getPhoneNumber() { // Add getter for phoneNumber
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) { // Add setter for phoneNumber
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getAddress() { // Add getter for address
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) { // Add setter for address
+    public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getMemberSince() {
+        return memberSince;
+    }
+
+    public void setMemberSince(String memberSince) {
+        this.memberSince = memberSince;
+    }
+
+    public String getLastLogin() {
+        return lastLogin;
+    }
+
+    public void setLastLogin(String lastLogin) {
+        this.lastLogin = lastLogin;
     }
 }
