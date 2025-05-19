@@ -3,146 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Taxi Booking System</title>
+    <title>Login - TaxiGo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        .login-container {
+            max-width: 400px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
-        body {
-            background-color: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
+        .form-group {
+            margin-bottom: 1rem;
         }
-        main {
-            min-height: calc(100vh - 150px);
-            padding: 50px 0;
-            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+        .form-label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
+        .form-control {
+            border-radius: 5px;
+            padding: 0.75rem;
+        }
+        .btn-login {
+            background: linear-gradient(135deg, #FFC107, #FF9800);
+            border: none;
+            color: white;
+            padding: 0.75rem 2rem;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+        .btn-login:hover {
+            background: linear-gradient(135deg, #FF9800, #FFC107);
+            color: white;
+            transform: translateY(-2px);
+        }
+        .btn-login:disabled {
+            background: #ccc;
+            transform: none;
+        }
+        .alert {
+            margin-top: 1rem;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        .alert i {
+            margin-right: 8px;
+        }
+        .alert-success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+        .alert-danger {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        .form-control:focus {
+            box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+            border-color: #FFC107;
         }
     </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
-    
-    <main style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+    <main>
         <div class="container">
-            <div style="background-color: #fff; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); padding: 30px; border-top: 5px solid #FFC107; max-width: 500px; margin: 0 auto;">
-                <h1 style="color: #222; text-align: center; margin-bottom: 30px; font-size: 28px; font-weight: 600;">Welcome Back</h1>
-                
-                <form id="loginForm" style="display: grid; gap: 20px;">
-                    <div style="display: flex; flex-direction: column;">
-                        <label for="email" style="font-weight: 500; margin-bottom: 8px; color: #444;">Email Address:</label>
-                        <input type="email" id="email" name="email" required style="padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px; transition: border-color 0.3s; outline: none;" placeholder="Enter your email">
+            <div class="login-container">
+                <h1 class="text-center mb-4">Welcome Back!</h1>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="email" name="email" required 
+                               placeholder="Enter your email">
                     </div>
-                    
-                    <div style="display: flex; flex-direction: column;">
-                        <label for="password" style="font-weight: 500; margin-bottom: 8px; color: #444;">Password:</label>
-                        <input type="password" id="password" name="password" required style="padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px; transition: border-color 0.3s; outline: none;" placeholder="Enter your password">
+                    <div class="form-group">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required
+                               placeholder="Enter your password">
                     </div>
-                    
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <div style="display: flex; align-items: center;">
-                            <input type="checkbox" id="remember" name="remember" style="margin-right: 8px;">
-                            <label for="remember" style="color: #666; font-size: 14px;">Remember me</label>
-                        </div>
-                        <a href="#" style="color: #FFC107; text-decoration: none; font-size: 14px; font-weight: 500;">Forgot Password?</a>
-                    </div>
-                    
-                    <button type="submit" style="background-color: #FFC107; color: #222; padding: 14px; border: none; border-radius: 4px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background-color 0.3s; margin-top: 10px; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">Sign In</button>
+                    <button type="submit" class="btn btn-login">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
                 </form>
-                
-                <div style="text-align: center; margin-top: 25px; padding-top: 20px; border-top: 1px solid #eee;">
-                    <p style="color: #666;">Don't have an account? <a href="register.html" style="color: #FFC107; text-decoration: none; font-weight: 500; transition: color 0.3s;">Register here</a>.</p>
-                </div>
+                <p class="text-center mt-3">Don't have an account? <a href="register.html" class="text-decoration-none">Register here</a></p>
             </div>
         </div>
     </main>
-    
     <div id="footer-placeholder"></div>
-    
+
     <script>
         async function loadComponents() {
             document.getElementById('header-placeholder').innerHTML = await fetch('../components/header.html').then(res => res.text());
             document.getElementById('footer-placeholder').innerHTML = await fetch('../components/footer.html').then(res => res.text());
         }
         loadComponents();
-        
-        // Input focus effects
-        const inputs = document.querySelectorAll('input[type="email"], input[type="password"]');
-        inputs.forEach(input => {
-            input.addEventListener('focus', () => {
-                input.style.borderColor = '#FFC107';
-                input.style.boxShadow = '0 0 0 3px rgba(255, 193, 7, 0.2)';
-            });
-            input.addEventListener('blur', () => {
-                input.style.borderColor = '#ddd';
-                input.style.boxShadow = 'none';
-            });
-        });
-        
-        // Form submission handler
+
         const loginForm = document.getElementById('loginForm');
+        const submitButton = loginForm.querySelector('button[type="submit"]');
+
+        function showMessage(message, type = 'error') {
+            // Remove any existing messages
+            const existingMessages = document.querySelectorAll('.alert');
+            existingMessages.forEach(msg => msg.remove());
+
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `alert alert-${type === 'error' ? 'danger' : 'success'} text-center`;
+            
+            const icon = type === 'error' ? 'exclamation-circle' : 'check-circle';
+            messageDiv.innerHTML = `
+                <h4><i class="fas fa-${icon}"></i> ${type === 'error' ? 'Login Failed' : 'Login Successful!'}</h4>
+                <p>${message}</p>
+            `;
+            
+            loginForm.insertAdjacentElement('afterend', messageDiv);
+        }
+
+        function setLoading(isLoading) {
+            submitButton.disabled = isLoading;
+            submitButton.innerHTML = isLoading ? 
+                '<i class="fas fa-spinner fa-spin"></i> Logging in...' : 
+                '<i class="fas fa-sign-in-alt"></i> Login';
+        }
+
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
-            // Show loading state on button
-            const submitButton = loginForm.querySelector('button[type="submit"]');
-            const originalText = submitButton.innerText;
-            submitButton.innerText = 'Signing In...';
-            submitButton.style.backgroundColor = '#e0a800';
-            submitButton.disabled = true;
-            
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            
+
+            setLoading(true);
+
             try {
-                const response = await fetch('/login', {
+                const response = await fetch('/auth/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password })
                 });
-                
-                if (response.ok) {
-                    // Success notification
-                    const successMsg = document.createElement('div');
-                    successMsg.style.backgroundColor = '#d4edda';
-                    successMsg.style.color = '#155724';
-                    successMsg.style.padding = '15px';
-                    successMsg.style.borderRadius = '4px';
-                    successMsg.style.marginTop = '20px';
-                    successMsg.style.textAlign = 'center';
-                    successMsg.innerText = 'Login successful! Redirecting...';
-                    loginForm.insertAdjacentElement('afterend', successMsg);
-                    
+
+                const data = await response.json();
+
+                if (response.ok && data.status === 'success') {
+                    // Store user data in localStorage
+                    localStorage.setItem('userData', JSON.stringify({
+                        ...data,
+                        lastLogin: new Date().toLocaleString()
+                    }));
+
+                    showMessage('Welcome back! Redirecting to your profile...', 'success');
+
+                    // Redirect to profile page after 1 second
                     setTimeout(() => {
-                        window.location.href = 'home.html';
-                    }, 1500);
+                        window.location.href = 'profile.html';
+                    }, 1000);
                 } else {
-                    throw new Error('Login failed');
+                    throw new Error(data.message || 'Unable to login. Please try again.');
                 }
             } catch (error) {
-                // Error notification
-                const errorMsg = document.createElement('div');
-                errorMsg.style.backgroundColor = '#f8d7da';
-                errorMsg.style.color = '#721c24';
-                errorMsg.style.padding = '15px';
-                errorMsg.style.borderRadius = '4px';
-                errorMsg.style.marginTop = '20px';
-                errorMsg.style.textAlign = 'center';
-                errorMsg.innerText = 'Invalid email or password.';
-                loginForm.insertAdjacentElement('afterend', errorMsg);
-                
-                // Reset button
-                submitButton.innerText = originalText;
-                submitButton.style.backgroundColor = '#FFC107';
-                submitButton.disabled = false;
+                showMessage(error.message || 'Something went wrong. Please try again later.');
+                // Clear password field on error
+                document.getElementById('password').value = '';
+            } finally {
+                setLoading(false);
             }
         });
     </script>

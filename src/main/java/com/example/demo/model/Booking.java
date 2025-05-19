@@ -3,16 +3,20 @@ package com.example.demo.model;
 public class Booking {
     private String bookingId;
     private String userId;
+    private String name; // New field for customer name
     private String pickupLocation;
     private String dropLocation;
+    private String vehicleType; // New field for vehicle type
 
     // Constructors
     public Booking() {}
-    public Booking(String bookingId, String userId, String pickupLocation, String dropLocation) {
+    public Booking(String bookingId, String userId, String name, String pickupLocation, String dropLocation, String vehicleType) {
         this.bookingId = bookingId;
         this.userId = userId;
+        this.name = name;
         this.pickupLocation = pickupLocation;
         this.dropLocation = dropLocation;
+        this.vehicleType = vehicleType;
     }
 
     // Getters and Setters
@@ -32,6 +36,14 @@ public class Booking {
         this.userId = userId;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getPickupLocation() {
         return pickupLocation;
     }
@@ -46,5 +58,13 @@ public class Booking {
 
     public void setDropLocation(String dropLocation) {
         this.dropLocation = dropLocation;
+    }
+
+    public String getVehicleType() {
+        return vehicleType;
+    }
+
+    public void setVehicleType(String vehicleType) {
+        this.vehicleType = vehicleType;
     }
 }

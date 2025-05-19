@@ -4,86 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taxi Booking System</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        body {
-            background-color: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
-        }
-        header {
-            background: linear-gradient(135deg, #FFC107, #FF9800);
-            padding: 15px 0;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-    </style>
 </head>
-<body>
-    <header>
-        <div class="header-container">
+<body style="margin: 0; padding: 0; font-family: 'Arial', sans-serif;">
+    <header style="background: linear-gradient(135deg, #FFC107, #FF9800); padding: 15px 0; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); position: sticky; top: 0; z-index: 1000;">
+        <div style="display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px;">
             <!-- Logo and Brand Name -->
             <div style="display: flex; align-items: center;">
-                <div style="font-size: 28px; font-weight: bold; display: flex; align-items: center;">
-                    <svg style="width: 36px; height: 36px; margin-right: 8px;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5H6.5C5.84 5 5.29 5.42 5.08 6.01L3 12V20C3 20.55 3.45 21 4 21H5C5.55 21 6 20.55 6 20V19H18V20C18 20.55 18.45 21 19 21H20C20.55 21 21 20.55 21 20V12L18.92 6.01ZM6.5 16C5.67 16 5 15.33 5 14.5C5 13.67 5.67 13 6.5 13C7.33 13 8 13.67 8 14.5C8 15.33 7.33 16 6.5 16ZM17.5 16C16.67 16 16 15.33 16 14.5C16 13.67 16.67 13 17.5 13C18.33 13 19 13.67 19 14.5C19 15.33 18.33 16 17.5 16ZM5 11L6.5 6.5H17.5L19 11H5Z" fill="#222"/>
-                    </svg>
-                    <span style="color: #222; letter-spacing: -0.5px; font-weight: 800;">Taxi</span><span style="color: #fff; letter-spacing: -0.5px; font-weight: 800;">Go</span>
+                <div style="font-size: 28px; font-weight: bold; color: #333;">
+                    <span style="color: #000;">Taxi</span><span style="color: #fff;">Go</span>
                 </div>
             </div>
             
             <!-- Navigation Menu -->
             <nav>
                 <ul style="display: flex; list-style: none; margin: 0; padding: 0; gap: 25px;">
-                    <li>
-                        <a href="home.html" style="text-decoration: none; color: #fff; font-weight: 600; font-size: 16px; position: relative; padding: 5px 0; transition: all 0.3s ease;">
-                            Home
-                            <span style="position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background-color: #fff; transform: scaleX(0); transition: transform 0.3s ease; transform-origin: center;"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="AboutUs.html" style="text-decoration: none; color: #fff; font-weight: 600; font-size: 16px; position: relative; padding: 5px 0; transition: all 0.3s ease;">
-                            About Us
-                            <span style="position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background-color: #fff; transform: scaleX(0); transition: transform 0.3s ease; transform-origin: center;"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" style="text-decoration: none; color: #fff; font-weight: 600; font-size: 16px; position: relative; padding: 5px 0; transition: all 0.3s ease;">
-                            Services
-                            <span style="position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background-color: #fff; transform: scaleX(0); transition: transform 0.3s ease; transform-origin: center;"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" style="text-decoration: none; color: #fff; font-weight: 600; font-size: 16px; position: relative; padding: 5px 0; transition: all 0.3s ease;">
-                            Contact Us
-                            <span style="position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background-color: #fff; transform: scaleX(0); transition: transform 0.3s ease; transform-origin: center;"></span>
-                        </a>
-                    </li>
+                    <li><a href="home.html" style="text-decoration: none; color: #fff; font-weight: bold; font-size: 16px; position: relative; padding-bottom: 5px; transition: all 0.3s ease;">Home</a></li>
+                    <li><a href="#" style="text-decoration: none; color: #fff; font-weight: bold; font-size: 16px; position: relative; padding-bottom: 5px; transition: all 0.3s ease;">About Us</a></li>
+                    <li><a href="#" style="text-decoration: none; color: #fff; font-weight: bold; font-size: 16px; position: relative; padding-bottom: 5px; transition: all 0.3s ease;">Services</a></li>
+                    <li><a href="#" style="text-decoration: none; color: #fff; font-weight: bold; font-size: 16px; position: relative; padding-bottom: 5px; transition: all 0.3s ease;">Contact Us</a></li>
+                    <li><a href="admin-login.html" style="text-decoration: none; color: #FFC107; font-weight: bold; font-size: 16px; position: relative; padding-bottom: 5px; transition: all 0.3s ease;">Admin Login</a></li>
+                    <li><a href="admin-dashboard.html" style="text-decoration: none; color: #FFC107; font-weight: bold; font-size: 16px; position: relative; padding-bottom: 5px; transition: all 0.3s ease;">Admin Dashboard</a></li>
                 </ul>
             </nav>
             
             <!-- User Actions -->
-            <div style="display: flex; gap: 15px; align-items: center;">
-                <a href="login.html" style="text-decoration: none; background-color: rgba(255, 255, 255, 0.2); color: #fff; padding: 10px 18px; border-radius: 4px; font-weight: 600; font-size: 14px; transition: all 0.3s ease; border: 1px solid rgba(255, 255, 255, 0.3);">Login</a>
-                <a href="register.html" style="text-decoration: none; background-color: #222; color: #fff; padding: 10px 18px; border-radius: 4px; font-weight: 600; font-size: 14px; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">Sign Up</a>
-                <a href="profile.html" style="text-decoration: none; color: #fff; display: flex; align-items: center; font-weight: 600; font-size: 14px; padding: 8px 12px; border-radius: 4px; transition: all 0.3s ease;">
-                    <span style="background-color: rgba(255, 255, 255, 0.2); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 8px; border: 1px solid rgba(255, 255, 255, 0.3);">
-                        <svg style="width: 18px; height: 18px;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div style="display: flex; gap: 15px;">
+                <a href="login.html" style="text-decoration: none; background-color: rgba(255, 255, 255, 0.2); color: #fff; padding: 8px 15px; border-radius: 4px; font-weight: bold; font-size: 14px; transition: all 0.3s ease; border: 1px solid rgba(255, 255, 255, 0.3);">Login</a>
+                <a href="register.html" style="text-decoration: none; background-color: #333; color: #fff; padding: 8px 15px; border-radius: 4px; font-weight: bold; font-size: 14px; transition: all 0.3s ease;">Sign Up</a>
+                <a href="profile.html" style="text-decoration: none; color: #fff; display: flex; align-items: center; font-weight: bold; font-size: 14px; transition: all 0.3s ease;">
+                    <span style="background-color: rgba(255, 255, 255, 0.2); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 5px;">
+                        <svg style="width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" fill="#ffffff"/>
                         </svg>
                     </span>
@@ -92,100 +42,5 @@
             </div>
         </div>
     </header>
-
-    <script>
-        // Add hover effect for navigation links
-        const navLinks = document.querySelectorAll('nav a');
-        navLinks.forEach(link => {
-            const underline = link.querySelector('span');
-            
-            link.addEventListener('mouseenter', () => {
-                underline.style.transform = 'scaleX(1)';
-            });
-            
-            link.addEventListener('mouseleave', () => {
-                underline.style.transform = 'scaleX(0)';
-            });
-            
-            // Check if this is the current page and highlight it
-            if (window.location.href.includes(link.getAttribute('href'))) {
-                link.style.fontWeight = '700';
-                underline.style.transform = 'scaleX(1)';
-            }
-        });
-        
-        // Add hover effects for buttons
-        const loginBtn = document.querySelector('a[href="login.html"]');
-        loginBtn.addEventListener('mouseenter', () => {
-            loginBtn.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
-        });
-        loginBtn.addEventListener('mouseleave', () => {
-            loginBtn.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
-        });
-        
-        const signupBtn = document.querySelector('a[href="register.html"]');
-        signupBtn.addEventListener('mouseenter', () => {
-            signupBtn.style.backgroundColor = '#000';
-        });
-        signupBtn.addEventListener('mouseleave', () => {
-            signupBtn.style.backgroundColor = '#222';
-        });
-        
-        const profileBtn = document.querySelector('a[href="profile.html"]');
-        profileBtn.addEventListener('mouseenter', () => {
-            profileBtn.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-        });
-        profileBtn.addEventListener('mouseleave', () => {
-            profileBtn.style.backgroundColor = 'transparent';
-        });
-        
-        // Detect scroll to add shadow effect to header
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 10) {
-                header.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.3)';
-            } else {
-                header.style.boxShadow = '0 3px 10px rgba(0, 0, 0, 0.2)';
-            }
-        });
-        
-        // Add mobile menu toggle functionality (icon only shows on small screens)
-        const headerContainer = document.querySelector('.header-container');
-        
-        // Create mobile menu button (hidden on desktop)
-        const mobileMenuBtn = document.createElement('button');
-        mobileMenuBtn.style.display = 'none';
-        mobileMenuBtn.style.background = 'none';
-        mobileMenuBtn.style.border = 'none';
-        mobileMenuBtn.style.cursor = 'pointer';
-        mobileMenuBtn.style.padding = '5px';
-        mobileMenuBtn.innerHTML = `
-            <svg style="width: 24px; height: 24px;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3 18H21V16H3V18ZM3 13H21V11H3V13ZM3 6V8H21V6H3Z" fill="#fff"/>
-            </svg>
-        `;
-        
-        headerContainer.appendChild(mobileMenuBtn);
-        
-        // Responsive adjustments
-        function adjustForScreenSize() {
-            const nav = document.querySelector('nav');
-            const userActions = document.querySelector('.header-container > div:last-child');
-            
-            if (window.innerWidth < 768) {
-                nav.style.display = 'none';
-                userActions.style.display = 'none';
-                mobileMenuBtn.style.display = 'block';
-            } else {
-                nav.style.display = 'block';
-                userActions.style.display = 'flex';
-                mobileMenuBtn.style.display = 'none';
-            }
-        }
-        
-        // Call initially and on resize
-        adjustForScreenSize();
-        window.addEventListener('resize', adjustForScreenSize);
-    </script>
 </body>
 </html>

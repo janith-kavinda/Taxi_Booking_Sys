@@ -19,17 +19,145 @@
         main {
             flex: 1;
         }
+
+        /* Carousel Styles */
+        .carousel-container {
+            position: relative;
+            height: 700px;
+            overflow: hidden;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.65);
+        }
+
+        .carousel-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        /* Carousel Navigation */
+        .carousel-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 2;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .carousel-dot.active {
+            background-color: #FFC107;
+        }
+
+        /* Arrow Navigation */
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 24px;
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 2;
+        }
+
+        .carousel-arrow:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .carousel-arrow.prev {
+            left: 20px;
+        }
+
+        .carousel-arrow.next {
+            right: 20px;
+        }
     </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
     <main>
-        <!-- Hero Section -->
-        <div style="background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://via.placeholder.com/1920x800'); background-size: cover; background-position: center; height: 500px; display: flex; align-items: center; justify-content: center; text-align: center; color: white;">
-            <div style="max-width: 800px; padding: 0 20px;">
-                <h1 style="font-size: 48px; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Your Ride, Your Way</h1>
-                <p style="font-size: 20px; margin-bottom: 30px; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">Fast, safe, and comfortable transportation services available 24/7</p>
-                <a href="#services" style="background-color: #FFC107; color: #222; text-decoration: none; padding: 12px 30px; border-radius: 30px; font-weight: bold; font-size: 18px; transition: background-color 0.3s; display: inline-block;">Book Now</a>
+        <!-- Hero Carousel Section -->
+        <div class="carousel-container">
+            <!-- Slide 1 -->
+            <div class="carousel-slide active" style="background-image: url('/images/carousel.jpg');">
+                <div class="carousel-content">
+                    <h1 style="font-size: 48px; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Your Ride, Your Way</h1>
+                    <p style="font-size: 20px; margin-bottom: 30px; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">Fast, safe, and comfortable transportation services available 24/7</p>
+                    <a href="#services" style="background-color: #FFC107; color: #222; text-decoration: none; padding: 12px 30px; border-radius: 30px; font-weight: bold; font-size: 18px; transition: background-color 0.3s; display: inline-block;">Book Now</a>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-slide" style="background-image: url('/images/carousel1.jpg');">
+                <div class="carousel-content">
+                    <h1 style="font-size: 48px; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Premium Service</h1>
+                    <p style="font-size: 20px; margin-bottom: 30px; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">Experience luxury travel with our fleet of premium vehicles</p>
+                    <a href="#services" style="background-color: #FFC107; color: #222; text-decoration: none; padding: 12px 30px; border-radius: 30px; font-weight: bold; font-size: 18px; transition: background-color 0.3s; display: inline-block;">Explore Services</a>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+
+            <div class="carousel-slide" style="background-image: url('/images/carousel2.jpg');">
+                <div class="carousel-content">
+                    <h1 style="font-size: 48px; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Premium Service</h1>
+                    <p style="font-size: 20px; margin-bottom: 30px; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">Experience luxury travel with our fleet of premium vehicles</p>
+                    <a href="#services" style="background-color: #FFC107; color: #222; text-decoration: none; padding: 12px 30px; border-radius: 30px; font-weight: bold; font-size: 18px; transition: background-color 0.3s; display: inline-block;">Explore Services</a>
+                </div>
+            </div>
+
+            <!-- Navigation Arrows -->
+            <button class="carousel-arrow prev" onclick="changeSlide(-1)">&#10094;</button>
+            <button class="carousel-arrow next" onclick="changeSlide(1)">&#10095;</button>
+
+            <!-- Dots Navigation -->
+            <div class="carousel-nav">
+                <div class="carousel-dot active" onclick="currentSlide(1)"></div>
+                <div class="carousel-dot" onclick="currentSlide(2)"></div>
             </div>
         </div>
 
@@ -45,7 +173,7 @@
                         <div style="padding: 25px;">
                             <h3 style="margin-top: 0; font-size: 22px; color: #222; margin-bottom: 15px;">City Ride</h3>
                             <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">Quick and reliable transportation within the city. Available 24/7 with professional drivers.</p>
-                            <a href="city-ride.html" style="color: #FFC107; text-decoration: none; font-weight: 600; display: inline-block;">Learn More →</a>
+                            <a href="booking-form.html" style="color: #FFC107; text-decoration: none; font-weight: 600; display: inline-block;">Book Now →</a>
                         </div>
                     </div>
                     
@@ -55,7 +183,7 @@
                         <div style="padding: 25px;">
                             <h3 style="margin-top: 0; font-size: 22px; color: #222; margin-bottom: 15px;">Rental Car</h3>
                             <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">Flexible car rental options for your personal and business needs with competitive rates.</p>
-                            <a href="rental-car.html" style="color: #FFC107; text-decoration: none; font-weight: 600; display: inline-block;">Learn More →</a>
+                            <a href="booking-form.html" style="color: #FFC107; text-decoration: none; font-weight: 600; display: inline-block;">Book Now →</a>
                         </div>
                     </div>
                     
@@ -65,7 +193,7 @@
                         <div style="padding: 25px;">
                             <h3 style="margin-top: 0; font-size: 22px; color: #222; margin-bottom: 15px;">Corporate Service</h3>
                             <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">Premium transportation solutions for businesses with priority service and account management.</p>
-                            <a href="corporate-service.html" style="color: #FFC107; text-decoration: none; font-weight: 600; display: inline-block;">Learn More →</a>
+                            <a href="booking-form.html" style="color: #FFC107; text-decoration: none; font-weight: 600; display: inline-block;">Book Now →</a>
                         </div>
                     </div>
                     
@@ -75,7 +203,7 @@
                         <div style="padding: 25px;">
                             <h3 style="margin-top: 0; font-size: 22px; color: #222; margin-bottom: 15px;">Long Distance</h3>
                             <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">Comfortable intercity travel with experienced drivers and well-maintained vehicles.</p>
-                            <a href="long-distance.html" style="color: #FFC107; text-decoration: none; font-weight: 600; display: inline-block;">Learn More →</a>
+                            <a href="booking-form.html" style="color: #FFC107; text-decoration: none; font-weight: 600; display: inline-block;">Book Now →</a>
                         </div>
                     </div>
                 </div>
@@ -139,6 +267,42 @@
     </main>
     <div id="footer-placeholder"></div>
     <script>
+        // Carousel JavaScript
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            if (index >= slides.length) {
+                slideIndex = 0;
+            } else if (index < 0) {
+                slideIndex = slides.length - 1;
+            } else {
+                slideIndex = index;
+            }
+            
+            slides[slideIndex].classList.add('active');
+            dots[slideIndex].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(slideIndex + 1);
+        }
+
+        function changeSlide(direction) {
+            showSlide(slideIndex + direction);
+        }
+
+        function currentSlide(index) {
+            showSlide(index - 1);
+        }
+
+        // Auto-advance carousel every 5 seconds
+        setInterval(nextSlide, 5000);
+
         // Load header and footer dynamically
         async function loadComponents() {
             try {

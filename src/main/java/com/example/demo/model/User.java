@@ -7,6 +7,9 @@ public class User {
     private String password;
     private String phoneNumber; // Add phoneNumber field
     private String address; // Add address field
+    private String country;
+    private String location;
+    private String memberSince;
 
     // Constructors
     public User() {}
@@ -18,15 +21,21 @@ public class User {
         this.password = null; // Default password to null
         this.phoneNumber = null; // Default phoneNumber to null
         this.address = null; // Default address to null
+        this.country = null; // Default country to null
+        this.location = null; // Default location to null
+        this.memberSince = null; // Default memberSince to null
     }
 
-    public User(String id, String name, String email, String password, String phoneNumber, String address) {
+    public User(String id, String name, String email, String password, String phoneNumber, String address, String country, String location, String memberSince) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.address = address;
+        this.country = country;
+        this.location = location;
+        this.memberSince = memberSince;
     }
 
     // Getters and Setters
@@ -76,5 +85,29 @@ public class User {
 
     public void setAddress(String address) { // Add setter for address
         this.address = address;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getMemberSince() {
+        return memberSince;
+    }
+
+    public void setMemberSince(String memberSince) {
+        this.memberSince = memberSince;
     }
 }

@@ -3,246 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Profile - Taxi Booking System</title>
+    <title>User Profile</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        .profile-header {
+            background: linear-gradient(135deg, #6B73FF 0%, #000DFF 100%);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
         }
-        body {
-            background-color: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid white;
+            object-fit: cover;
         }
-        main {
-            min-height: calc(100vh - 150px);
-            padding: 50px 0;
-            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+        .profile-card {
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
+        .profile-card:hover {
+            transform: translateY(-5px);
+        }
+        .info-item {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        .info-item:last-child {
+            border-bottom: none;
+        }
+        .edit-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
         }
     </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
     
-    <main style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+    <!-- Profile Header -->
+    <div class="profile-header">
         <div class="container">
-            <div style="background-color: #fff; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); padding: 30px; border-top: 5px solid #FFC107;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
-                    <h1 style="color: #222; font-size: 28px; font-weight: 600;">My Profile</h1>
-                    <div style="background-color: #e9ecef; border-radius: 50%; height: 80px; width: 80px; display: flex; justify-content: center; align-items: center; border: 3px solid #FFC107;">
-                        <span style="font-size: 30px; color: #444;">👤</span>
-                    </div>
+            <div class="row align-items-center">
+                <div class="col-md-3 text-center">
+                    <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-img mb-3" id="profileImage">
                 </div>
-                
-                <form id="profileForm" style="display: grid; gap: 20px;">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                        <div style="display: flex; flex-direction: column;">
-                            <label for="name" style="font-weight: 500; margin-bottom: 8px; color: #444;">Full Name:</label>
-                            <input type="text" id="name" name="name" required style="padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px; transition: border-color 0.3s; outline: none;" placeholder="Your full name">
-                        </div>
-                        
-                        <div style="display: flex; flex-direction: column;">
-                            <label for="email" style="font-weight: 500; margin-bottom: 8px; color: #444;">Email Address:</label>
-                            <input type="email" id="email" name="email" required readonly style="padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px; background-color: #f8f9fa; color: #666;" placeholder="Your email">
-                        </div>
-                    </div>
-                    
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                        <div style="display: flex; flex-direction: column;">
-                            <label for="phoneNumber" style="font-weight: 500; margin-bottom: 8px; color: #444;">Phone Number:</label>
-                            <input type="text" id="phoneNumber" name="phoneNumber" required style="padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px; transition: border-color 0.3s; outline: none;" placeholder="Your phone number">
-                        </div>
-                        
-                        <div style="display: flex; flex-direction: column;">
-                            <label for="address" style="font-weight: 500; margin-bottom: 8px; color: #444;">Address:</label>
-                            <input type="text" id="address" name="address" required style="padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px; transition: border-color 0.3s; outline: none;" placeholder="Your address">
-                        </div>
-                    </div>
-                    
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 10px;">
-                        <button type="submit" style="background-color: #FFC107; color: #222; padding: 14px; border: none; border-radius: 4px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background-color 0.3s; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">Save Changes</button>
-                        <button type="button" id="deleteProfile" style="background-color: #fff; color: #dc3545; padding: 14px; border: 1px solid #dc3545; border-radius: 4px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s;">Delete Account</button>
-                    </div>
-                </form>
-                
-                <div id="statusMessage" style="margin-top: 20px; display: none; padding: 15px; border-radius: 4px; text-align: center;"></div>
+                <div class="col-md-9">
+                    <h1 class="display-4" id="userName">Loading...</h1>
+                    <p class="lead" id="userStatus">Premium Member</p>
+                    <button class="btn btn-light edit-btn" onclick="editProfile()">
+                        <i class="fas fa-edit"></i> Edit Profile
+                    </button>
+                </div>
             </div>
         </div>
-    </main>
-    
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <!-- Personal Information -->
+            <div class="col-md-6 mb-4">
+                <div class="card profile-card">
+                    <div class="card-header bg-white">
+                        <h3 class="card-title mb-0">
+                            <i class="fas fa-user me-2"></i>Personal Information
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="info-item">
+                            <strong><i class="fas fa-envelope me-2"></i>Email:</strong>
+                            <p class="mb-0" id="userEmail">Loading...</p>
+                        </div>
+                        <div class="info-item">
+                            <strong><i class="fas fa-phone me-2"></i>Phone Number:</strong>
+                            <p class="mb-0" id="userPhone">Loading...</p>
+                        </div>
+                        <div class="info-item">
+                            <strong><i class="fas fa-map-marker-alt me-2"></i>Address:</strong>
+                            <p class="mb-0" id="userAddress">Loading...</p>
+                        </div>
+                        <div class="info-item">
+                            <strong><i class="fas fa-globe me-2"></i>Country:</strong>
+                            <p class="mb-0" id="userCountry">Loading...</p>
+                        </div>
+                        <div class="info-item">
+                            <strong><i class="fas fa-city me-2"></i>City/Location:</strong>
+                            <p class="mb-0" id="userLocation">Loading...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Information -->
+            <div class="col-md-6 mb-4">
+                <div class="card profile-card">
+                    <div class="card-header bg-white">
+                        <h3 class="card-title mb-0">
+                            <i class="fas fa-shield-alt me-2"></i>Account Information
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="info-item">
+                            <strong><i class="fas fa-id-card me-2"></i>Member Since:</strong>
+                            <p class="mb-0" id="memberSince">Loading...</p>
+                        </div>
+                        <div class="info-item">
+                            <strong><i class="fas fa-star me-2"></i>Account Status:</strong>
+                            <p class="mb-0"><span class="badge bg-success">Active</span></p>
+                        </div>
+                        <div class="info-item">
+                            <strong><i class="fas fa-history me-2"></i>Last Login:</strong>
+                            <p class="mb-0" id="lastLogin">Loading...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="col-12">
+                <div class="card profile-card">
+                    <div class="card-header bg-white">
+                        <h3 class="card-title mb-0">
+                            <i class="fas fa-history me-2"></i>Recent Activity
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Activity</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="activityTableBody">
+                                    <tr>
+                                        <td colspan="3" class="text-center">No recent activity</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="footer-placeholder"></div>
-    
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
     <script>
+        // Load header and footer
         async function loadComponents() {
             document.getElementById('header-placeholder').innerHTML = await fetch('../components/header.html').then(res => res.text());
             document.getElementById('footer-placeholder').innerHTML = await fetch('../components/footer.html').then(res => res.text());
         }
         loadComponents();
-        
-        // Input focus effects
-        const inputs = document.querySelectorAll('input:not([readonly])');
-        inputs.forEach(input => {
-            input.addEventListener('focus', () => {
-                input.style.borderColor = '#FFC107';
-                input.style.boxShadow = '0 0 0 3px rgba(255, 193, 7, 0.2)';
-            });
-            input.addEventListener('blur', () => {
-                input.style.borderColor = '#ddd';
-                input.style.boxShadow = 'none';
-            });
-        });
-        
-        const profileForm = document.getElementById('profileForm');
-        const deleteProfileButton = document.getElementById('deleteProfile');
-        const statusMessage = document.getElementById('statusMessage');
-        
-        // Show status message
-        function showStatus(message, isError = false) {
-            statusMessage.textContent = message;
-            statusMessage.style.display = 'block';
-            statusMessage.style.backgroundColor = isError ? '#f8d7da' : '#d4edda';
-            statusMessage.style.color = isError ? '#721c24' : '#155724';
-            
-            // Auto hide after 5 seconds
-            setTimeout(() => {
-                statusMessage.style.display = 'none';
-            }, 5000);
-        }
-        
-        // Delete button hover effect
-        deleteProfileButton.addEventListener('mouseover', () => {
-            deleteProfileButton.style.backgroundColor = '#dc3545';
-            deleteProfileButton.style.color = '#fff';
-        });
-        
-        deleteProfileButton.addEventListener('mouseout', () => {
-            deleteProfileButton.style.backgroundColor = '#fff';
-            deleteProfileButton.style.color = '#dc3545';
-        });
 
-        // Load profile data
-        async function loadProfile() {
-            try {
-                const response = await fetch('/profile');
-                if (response.ok) {
-                    const profile = await response.json();
-                    document.getElementById('name').value = profile.name;
-                    document.getElementById('email').value = profile.email;
-                    document.getElementById('phoneNumber').value = profile.phoneNumber;
-                    document.getElementById('address').value = profile.address;
-                } else {
-                    showStatus('Failed to load profile data.', true);
-                }
-            } catch (error) {
-                showStatus('Error connecting to server.', true);
+        // Load and display user data
+        function loadUserData() {
+            const userData = JSON.parse(localStorage.getItem('userData'));
+            if (userData) {
+                document.getElementById('userName').textContent = userData.name;
+                document.getElementById('userEmail').textContent = userData.email;
+                document.getElementById('userPhone').textContent = userData.phoneNumber || 'Not set';
+                document.getElementById('userAddress').textContent = userData.address || 'Not set';
+                document.getElementById('userCountry').textContent = userData.country || 'Not set';
+                document.getElementById('userLocation').textContent = userData.location || 'Not set';
+                document.getElementById('memberSince').textContent = userData.memberSince;
+                document.getElementById('lastLogin').textContent = userData.lastLogin;
+            } else {
+                // If no user data, redirect to login
+                window.location.href = 'login.html';
             }
         }
 
-        // Update profile
-        profileForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            // Show loading state on button
-            const submitButton = profileForm.querySelector('button[type="submit"]');
-            const originalText = submitButton.innerText;
-            submitButton.innerText = 'Saving...';
-            submitButton.style.backgroundColor = '#e0a800';
-            submitButton.disabled = true;
-            
-            const name = document.getElementById('name').value;
-            const phoneNumber = document.getElementById('phoneNumber').value;
-            const address = document.getElementById('address').value;
+        // Edit profile function
+        function editProfile() {
+            // TODO: Implement edit profile functionality
+            alert('Edit profile functionality coming soon!');
+        }
 
-            try {
-                const response = await fetch('/profile', {
-                    method: 'PUT',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, phoneNumber, address })
-                });
-
-                if (response.ok) {
-                    showStatus('Profile updated successfully!');
-                } else {
-                    showStatus('Failed to update profile.', true);
-                }
-            } catch (error) {
-                showStatus('Error connecting to server.', true);
-            } finally {
-                // Reset button
-                submitButton.innerText = originalText;
-                submitButton.style.backgroundColor = '#FFC107';
-                submitButton.disabled = false;
-            }
-        });
-
-        // Delete profile
-        deleteProfileButton.addEventListener('click', async () => {
-            // Create modal for deletion confirmation
-            const modalOverlay = document.createElement('div');
-            modalOverlay.style.position = 'fixed';
-            modalOverlay.style.top = '0';
-            modalOverlay.style.left = '0';
-            modalOverlay.style.width = '100%';
-            modalOverlay.style.height = '100%';
-            modalOverlay.style.backgroundColor = 'rgba(0,0,0,0.5)';
-            modalOverlay.style.display = 'flex';
-            modalOverlay.style.justifyContent = 'center';
-            modalOverlay.style.alignItems = 'center';
-            modalOverlay.style.zIndex = '1000';
-            
-            const modalContent = document.createElement('div');
-            modalContent.style.backgroundColor = '#fff';
-            modalContent.style.borderRadius = '8px';
-            modalContent.style.padding = '30px';
-            modalContent.style.maxWidth = '400px';
-            modalContent.style.width = '90%';
-            modalContent.style.boxShadow = '0 5px 15px rgba(0,0,0,0.3)';
-            
-            modalContent.innerHTML = `
-                <h2 style="color: #dc3545; margin-bottom: 20px; text-align: center;">Delete Account</h2>
-                <p style="margin-bottom: 20px; text-align: center;">Are you sure you want to delete your account? This action cannot be undone.</p>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                    <button id="cancelDelete" style="padding: 10px; border: 1px solid #6c757d; background-color: #fff; color: #6c757d; border-radius: 4px; cursor: pointer;">Cancel</button>
-                    <button id="confirmDelete" style="padding: 10px; border: none; background-color: #dc3545; color: #fff; border-radius: 4px; cursor: pointer;">Delete Account</button>
-                </div>
-            `;
-            
-            modalOverlay.appendChild(modalContent);
-            document.body.appendChild(modalOverlay);
-            
-            // Handle modal actions
-            document.getElementById('cancelDelete').addEventListener('click', () => {
-                document.body.removeChild(modalOverlay);
-            });
-            
-            document.getElementById('confirmDelete').addEventListener('click', async () => {
-                try {
-                    const response = await fetch('/profile', { method: 'DELETE' });
-                    if (response.ok) {
-                        showStatus('Profile deleted successfully!');
-                        setTimeout(() => {
-                            window.location.href = 'register.html';
-                        }, 1500);
-                    } else {
-                        document.body.removeChild(modalOverlay);
-                        showStatus('Failed to delete profile.', true);
-                    }
-                } catch (error) {
-                    document.body.removeChild(modalOverlay);
-                    showStatus('Error connecting to server.', true);
-                }
-            });
-        });
-
-        // Load profile data when page loads
-        loadProfile();
+        // Load user data when page loads
+        document.addEventListener('DOMContentLoaded', loadUserData);
     </script>
 </body>
 </html>
