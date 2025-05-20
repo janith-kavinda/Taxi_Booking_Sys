@@ -37,6 +37,9 @@ public class AuthController {
         try {
             String email = credentials.get("email");
             String password = credentials.get("password");
+            System.out.println("Login attempt with email: " + email); // Debugging line
+            System.out.println("Login attempt with pwd: " + password); // Debugging line
+
 
             if (email == null || email.trim().isEmpty()) {
                 return ResponseEntity.badRequest()

@@ -1,12 +1,16 @@
 package com.example.demo.service;
 
 import com.example.demo.model.User;
+import org.springframework.stereotype.Service; // Import this
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
+@Service 
 public class UserService {
     private static final String FILE_PATH = "C:/Temp/users.txt"; // Updated to a writable directory
 
@@ -53,6 +57,14 @@ public class UserService {
             writer.write(userData);
             writer.newLine();
         }
+    }
+
+    public User getUserById(String id) throws IOException {
+        List<User> users = getAllUsers();
+        return users.stream()
+                .filter(user -> user.getId().equals(id))
+                .findFirst()
+                .orElse(null);
     }
 
     public List<User> getAllUsers() throws IOException {
@@ -104,4 +116,62 @@ public class UserService {
             .findFirst()
             .orElse(null);
     }
+
+     // Helper method to write all users back to the file
+    private void saveAllUsers(List<User> users) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, false))) { // false to overwrite
+            for (User user : users) {
+                String userData = String.join(",",
+                        user.getId(),
+                        user.getName(),
+                        user.getEmail(),
+                        user.getPassword(),
+                        user.getPhoneNumber() != null ? user.getPhoneNumber() : "",
+                        user.getAddress() != null ? user.getAddress() : "",
+                        user.getCountry() != null ? user.getCountry() : "",
+                        user.getLocation() != null ? user.getLocation() : "",
+                        user.getMemberSince() != null ? user.getMemberSince() : new Date().toString(), // Ensure memberSince is always set
+                        user.getLastLogin() != null ? user.getLastLogin() : ""
+                       
+                );
+                writer.write(userData);
+                writer.newLine();
+            }
+        }
+    }
+
+
+     public void updateUser(User updatedUser) throws IOException {
+        if (updatedUser.getId() == null || updatedUser.getId().trim().isEmpty()) {
+            throw new IllegalArgumentException("User ID is required for update.");
+        }
+
+        List<User> users = getAllUsers();
+        boolean found = false;
+        for (int i = 0; i < users.size(); i++) {
+            User existingUser = users.get(i);
+            if (existingUser.getId().equals(updatedUser.getId())) {
+               
+                existingUser.setName(updatedUser.getName());
+                existingUser.setEmail(updatedUser.getEmail());
+                
+                existingUser.setPhoneNumber(updatedUser.getPhoneNumber());
+                existingUser.setAddress(updatedUser.getAddress());
+                existingUser.setCountry(updatedUser.getCountry());
+                existingUser.setLocation(updatedUser.getLocation());
+               
+               
+
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            throw new IllegalArgumentException("User with ID " + updatedUser.getId() + " not found.");
+        }
+
+        saveAllUsers(users); // Save the updated list back to the file
+    }
+
 }
