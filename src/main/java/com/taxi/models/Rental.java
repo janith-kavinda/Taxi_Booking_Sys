@@ -1,7 +1,5 @@
 package com.taxi.models;
 
-import java.time.LocalDate;
-
 public class Rental {
     private int id;
     private int vehicleID;

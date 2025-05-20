@@ -1,6 +1,5 @@
 package com.taxi.models;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Vehicle {

@@ -1,7 +1,6 @@
 package com.taxi.services;
 import com.taxi.models.Rental;
 import com.taxi.utils.FileUtils;
-import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.ArrayList;

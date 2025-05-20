@@ -1,86 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking Success</title>
+    <title>Booking Success - TaxiGo</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
-
-<body>
+<body style="margin: 0; font-family: 'Helvetica Neue', Arial, sans-serif; background-color: #f8f9fc; color: #333;">
     <div id="header-placeholder"></div>
-    <div class="container">
-        <h1>Booking Successful!</h1>
-        <p>Your booking has been successfully created. Here are your booking details:</p>
-        <div id="bookingDetails"
-            style="border: 1px solid #ccc; padding: 20px; border-radius: 10px; background-color: #f9f9f9;">
+    <div style="max-width: 800px; margin: 80px auto; padding: 20px; text-align: center;">
+        <h1 style="font-size: 36px; font-weight: 700; color: #1a1a1a; margin-bottom: 20px; letter-spacing: -0.5px;">Booking Successful!</h1>
+        <p style="font-size: 18px; line-height: 1.7; color: #4a4a4a; margin-bottom: 30px;">
+            Your booking has been successfully created. Review your details below or make changes if needed.
+        </p>
+        <div id="bookingDetails" style="background-color: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: left; max-width: 600px; margin: 0 auto 40px;">
             <!-- Booking details will be dynamically loaded here -->
         </div>
-        <div style="margin-top: 20px;">
-            <button id="updateBooking"
-                style="padding: 10px 20px; background-color: #FFC107; color: #222; border: none; border-radius: 5px; cursor: pointer;">Update
-                Booking</button>
-            <button id="deleteBooking"
-                style="padding: 10px 20px; background-color: #FF5722; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Delete
-                Booking</button>
+        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 40px;">
+            <button id="updateBooking" style="padding: 12px 30px; background-color: #007bff; color: #fff; font-size: 16px; font-weight: 500; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">Update Booking</button>
+            <button id="deleteBooking" style="padding: 12px 30px; background-color: #dc3545; color: #fff; font-size: 16px; font-weight: 500; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">Delete Booking</button>
         </div>
-        <a href="home.html"
-            style="display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #FFC107; color: #222; text-decoration: none; border-radius: 5px;">Back
-            to Home</a>
+        <a href="home.html" style="display: inline-block; padding: 12px 30px; background-color: #FFC107; color: #1a1a1a; font-size: 16px; font-weight: 500; text-decoration: none; border-radius: 8px; transition: background-color 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">Back to Home</a>
     </div>
-    <div id="footer-placeholder"></div>
-    <div id="updateModal"
-        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1000; justify-content: center; align-items: center;">
-        <div
-            style="background-color: #fff; padding: 20px; border-radius: 10px; width: 400px; max-width: 90%; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
-            <h2 style="margin-top: 0; text-align: center;">Update Booking</h2>
+    <div id="updateModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); z-index: 1000; display: flex; justify-content: center; align-items: center;">
+        <div style="background-color: #fff; padding: 30px; border-radius: 12px; width: 450px; max-width: 90%; box-shadow: 0 6px 20px rgba(0,0,0,0.2);">
+            <h2 style="font-size: 24px; font-weight: 600; color: #1a1a1a; margin: 0 0 20px; text-align: center;">Update Booking</h2>
             <form id="updateForm">
-                <div style="margin-bottom: 15px;">
-                    <label for="updateUserId" style="display: block; font-weight: bold; margin-bottom: 5px;">User
-                        ID</label>
-                    <input type="text" id="updateUserId" name="userId"
-                        style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                <div style="margin-bottom: 20px;">
+                    <label for="updateUserId" style="display: block; font-size: 14px; font-weight: 600; color: #333; margin-bottom: 8px;">User ID</label>
+                    <input type="text" id="updateUserId" name="userId" style="width: 100%; padding: 12px; font-size: 15px; border: 1px solid #d1d3e2; border-radius: 8px; outline: none; transition: border-color 0.3s ease;">
                 </div>
-                <div style="margin-bottom: 15px;">
-                    <label for="updateName" style="display: block; font-weight: bold; margin-bottom: 5px;">Name</label>
-                    <input type="text" id="updateName" name="name"
-                        style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                <div style="margin-bottom: 20px;">
+                    <label for="updateName" style="display: block; font-size: 14px; font-weight: 600; color: #333; margin-bottom: 8px;">Name</label>
+                    <input type="text" id="updateName" name="name" style="width: 100%; padding: 12px; font-size: 15px; border: 1px solid #d1d3e2; border-radius: 8px; outline: none; transition: border-color 0.3s ease;">
                 </div>
-                <div style="margin-bottom: 15px;">
-                    <label for="updatePickupLocation"
-                        style="display: block; font-weight: bold; margin-bottom: 5px;">Pickup Location</label>
-                    <input type="text" id="updatePickupLocation" name="pickupLocation"
-                        style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                <div style="margin-bottom: 20px;">
+                    <label for="updatePickupLocation" style="display: block; font-size: 14px; font-weight: 600; color: #333; margin-bottom: 8px;">Pickup Location</label>
+                    <input type="text" id="updatePickupLocation" name="pickupLocation" style="width: 100%; padding: 12px; font-size: 15px; border: 1px solid #d1d3e2; border-radius: 8px; outline: none; transition: border-color 0.3s ease;">
                 </div>
-                <div style="margin-bottom: 15px;">
-                    <label for="updateDropLocation" style="display: block; font-weight: bold; margin-bottom: 5px;">Drop
-                        Location</label>
-                    <input type="text" id="updateDropLocation" name="dropLocation"
-                        style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                <div style="margin-bottom: 20px;">
+                    <label for="updateDropLocation" style="display: block; font-size: 14px; font-weight: 600; color: #333; margin-bottom: 8px;">Drop Location</label>
+                    <input type="text" id="updateDropLocation" name="dropLocation" style="width: 100%; padding: 12px; font-size: 15px; border: 1px solid #d1d3e2; border-radius: 8px; outline: none; transition: border-color 0.3s ease;">
                 </div>
-                <div style="margin-bottom: 15px;">
-                    <label for="updateVehicleType"
-                        style="display: block; font-weight: bold; margin-bottom: 5px;">Vehicle Type</label>
-                    <input type="text" id="updateVehicleType" name="vehicleType"
-                        style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                <div style="margin-bottom: 20px;">
+                    <label for="updateVehicleType" style="display: block; font-size: 14px; font-weight: 600; color: #333; margin-bottom: 8px;">Vehicle Type</label>
+                    <input type="text" id="updateVehicleType" name="vehicleType" style="width: 100%; padding: 12px; font-size: 15px; border: 1px solid #d1d3e2; border-radius: 8px; outline: none; transition: border-color 0.3s ease;">
                 </div>
-                <div style="text-align: center;">
-                    <button type="submit"
-                        style="padding: 10px 20px; background-color: #FFC107; color: #222; border: none; border-radius: 5px; cursor: pointer;">Save
-                        Changes</button>
-                    <button type="button" id="closeModal"
-                        style="padding: 10px 20px; background-color: #ccc; color: #222; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px;">Cancel</button>
+                <div style="display: flex; justify-content: center; gap: 15px;">
+                    <button type="submit" style="padding: 12px 30px; background-color: #007bff; color: #fff; font-size: 15px; font-weight: 500; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">Save Changes</button>
+                    <button type="button" id="closeModal" style="padding: 12px 30px; background-color: #6c757d; color: #fff; font-size: 15px; font-weight: 500; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">Cancel</button>
                 </div>
             </form>
         </div>
     </div>
-    <div id="popupMessage"
-        style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); z-index: 2000; text-align: center; width: 300px; max-width: 90%;">
-        <p id="popupText" style="margin: 0 0 20px; font-size: 16px; color: #333;"></p>
-        <button id="popupClose"
-            style="padding: 10px 20px; background-color: #FFC107; color: #222; border: none; border-radius: 5px; cursor: pointer;">OK</button>
+    <div id="popupMessage" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.2); z-index: 2000; text-align: center; width: 350px; max-width: 90%;">
+        <p id="popupText" style="margin: 0 0 20px; font-size: 16px; line-height: 1.6; color: #333;"></p>
+        <button id="popupClose" style="padding: 12px 30px; background-color: #007bff; color: #fff; font-size: 15px; font-weight: 500; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">OK</button>
     </div>
+    <div id="footer-placeholder"></div>
     <script>
         async function loadComponents() {
             try {
@@ -106,7 +83,7 @@
                 const newScript = document.createElement('script');
                 if (script.src) {
                     newScript.src = script.src;
-                    newScript.async = false; // Optional: preserve order
+                    newScript.async = false;
                 } else {
                     newScript.textContent = script.textContent;
                 }
@@ -115,7 +92,6 @@
             });
         }
 
-        // Load booking details from query parameters
         const urlParams = new URLSearchParams(window.location.search);
         const bookingId = urlParams.get('bookingId');
 
@@ -126,26 +102,25 @@
                     const bookingDetailsDiv = document.getElementById('bookingDetails');
                     if (data) {
                         bookingDetailsDiv.innerHTML = `
-                            <p><strong>Booking ID:</strong> ${data.bookingId}</p>
-                            <p><strong>User ID:</strong> ${data.userId}</p>
-                            <p><strong>Name:</strong> ${data.name}</p>
-                            <p><strong>Pickup Location:</strong> ${data.pickupLocation}</p>
-                            <p><strong>Drop Location:</strong> ${data.dropLocation}</p>
-                            <p><strong>Vehicle Type:</strong> ${data.vehicleType}</p>
+                            <p style="font-size: 16px; line-height: 1.8; color: #4a4a4a; margin: 10px 0;"><strong>Booking ID:</strong> ${data.bookingId}</p>
+                            <p style="font-size: 16px; line-height: 1.8; color: #4a4a4a; margin: 10px 0;"><strong>User ID:</strong> ${data.userId}</p>
+                            <p style="font-size: 16px; line-height: 1.8; color: #4a4a4a; margin: 10px 0;"><strong>Name:</strong> ${data.name}</p>
+                            <p style="font-size: 16px; line-height: 1.8; color: #4a4a4a; margin: 10px 0;"><strong>Pickup Location:</strong> ${data.pickupLocation}</p>
+                            <p style="font-size: 16px; line-height: 1.8; color: #4a4a4a; margin: 10px 0;"><strong>Drop Location:</strong> ${data.dropLocation}</p>
+                            <p style="font-size: 16px; line-height: 1.8; color: #4a4a4a; margin: 10px 0;"><strong>Vehicle Type:</strong> ${data.vehicleType}</p>
                         `;
                     } else {
-                        bookingDetailsDiv.innerHTML = `<p>Booking details not found.</p>`;
+                        bookingDetailsDiv.innerHTML = `<p style="font-size: 16px; color: #dc3545; text-align: center;">Booking details not found.</p>`;
                     }
                 })
                 .catch(error => {
                     console.error('Error fetching booking details:', error);
-                    document.getElementById('bookingDetails').innerHTML = `<p>Failed to load booking details. Please try again later.</p>`;
+                    document.getElementById('bookingDetails').innerHTML = `<p style="font-size: 16px; color: #dc3545; text-align: center;">Failed to load booking details. Please try again later.</p>`;
                 });
         } else {
-            document.getElementById('bookingDetails').innerHTML = `<p>No booking ID provided.</p>`;
+            document.getElementById('bookingDetails').innerHTML = `<p style="font-size: 16px; color: #dc3545; text-align: center;">No booking ID provided.</p>`;
         }
 
-        // Function to show popup message
         function showPopupMessage(message) {
             const popupMessage = document.getElementById('popupMessage');
             const popupText = document.getElementById('popupText');
@@ -153,13 +128,11 @@
             popupMessage.style.display = 'block';
         }
 
-        // Close popup message
         document.getElementById('popupClose').addEventListener('click', () => {
             document.getElementById('popupMessage').style.display = 'none';
         });
 
         document.getElementById('updateBooking').addEventListener('click', () => {
-            // Pre-fill the form with existing booking details
             fetch(`/api/bookings/${bookingId}`)
                 .then(response => response.json())
                 .then(data => {
@@ -169,7 +142,7 @@
                         document.getElementById('updatePickupLocation').value = data.pickupLocation;
                         document.getElementById('updateDropLocation').value = data.dropLocation;
                         document.getElementById('updateVehicleType').value = data.vehicleType;
-                        updateModal.style.display = 'flex';
+                        document.getElementById('updateModal').style.display = 'flex';
                     } else {
                         showPopupMessage('Failed to load booking details.');
                     }
@@ -240,5 +213,4 @@
         });
     </script>
 </body>
-
 </html>
